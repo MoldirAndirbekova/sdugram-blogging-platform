@@ -29,8 +29,7 @@ def index(request):
 
     feed_list = list(chain(*feed))
 
-#Saule's part
-    '''#user suggestion starts
+    #user suggestion starts
     all_users = User.objects.all()
     user_following_all = []
 
@@ -53,11 +52,11 @@ def index(request):
         profile_lists = Profile.objects.filter(id_user=ids)
         username_profile_list.append(profile_lists)
 
-    suggestions_username_profile_list = list(chain(*username_profile_list))'''
+    suggestions_username_profile_list = list(chain(*username_profile_list))
 
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list})
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list, 'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
 
 
 
