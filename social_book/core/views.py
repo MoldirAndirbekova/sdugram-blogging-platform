@@ -129,7 +129,7 @@ def signup(request):
             messages.info(request, 'Password is not matching')
             return redirect('signup')
     else:
-        return render(request, 'signup.html')
+        return render(request, 'signup1.html')
 
 
 @login_required(login_url='signin')
@@ -162,7 +162,7 @@ def signin(request):
             messages.info(request, 'Login or Password is invalid')
             return redirect('signin')
 
-    return render(request, 'signin.html')
+    return render(request, 'signin1.html')
 
 
 @login_required(login_url='signin')

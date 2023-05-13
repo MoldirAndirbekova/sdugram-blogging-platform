@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
-    <title>Sign in - Social book</title>
+    <title>Sign in - SDUgram</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
@@ -54,14 +54,8 @@
                     {% csrf_token %}
                     <input type="text" name="username" placeholder="Username" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
                     <input type="password" name="password" placeholder="Password" class="bg-gray-200 mb-2 shadow-none dark:bg-gray-800" style="border: 1px solid #d3d5d8 !important;">
-<!--                    <div class="flex justify-between my-4">-->
-<!--                        <div class="checkbox">-->
-<!--                            <input type="checkbox" id="chekcbox1" checked>-->
-<!--                            <label for="chekcbox1"><span class="checkbox-icon"></span>Remember Me</label>-->
-<!--                        </div>-->
-<!--                        <a href="#"> Forgot Your Password? </a>-->
-<!--                    </div>-->
-                                    <div>
+
+                <div>
                     {% for message in messages %}
                     <h5 style="color:red">
                         {{ message }}
@@ -99,7 +93,7 @@
 
 
     <!--<script>
-        
+
         (function (window, document, undefined) {
             'use strict';
             if (!('localStorage' in window)) return;
@@ -108,19 +102,19 @@
                 document.documentElement.className += ' dark';
             }
         })(window, document);
-    
-    
+
+
         (function (window, document, undefined) {
-    
+
             'use strict';
-    
+
             // Feature test
             if (!('localStorage' in window)) return;
-    
+
             // Get our newly insert toggle
             var nightMode = document.querySelector('#night-mode');
             if (!nightMode) return;
-    
+
             // When clicked, toggle night mode on or off
             nightMode.addEventListener('click', function (event) {
                 event.preventDefault();
@@ -131,7 +125,7 @@
                 }
                 localStorage.removeItem('gmtNightMode');
             }, false);
-    
+
         })(window, document);
     </script>-->
 
