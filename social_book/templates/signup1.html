@@ -1,0 +1,59 @@
+{% load static %}
+
+<html lang="en">
+
+
+
+<head>
+    <title>Sign Up - SDUgram</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}"></link>
+
+</head>
+
+<body class="bg-gray-100">
+
+
+    <div id="wrapper" class="flex flex-col justify-between h-screen">
+
+        <!-- header-->
+       <div class="navbar-auth">
+           <img src="{% static 'images/logo.png' %} " height="80" width="370">
+       </div>
+
+        <!-- Content-->
+
+        <div class="signin">
+            <div class="login">
+                <p style="color: white; font-size: 25px">Sign Up</p>
+                <!--<p class="mb-2 text-black text-lg"> Register to manage your account </p>-->
+                <div>
+                    {% for message in messages %}
+                    <h5 style="color:red">
+                        {{ message }}
+                    </h5>
+                    {% endfor %}
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label class="auth-input-label">
+                        <input type="text" name="username" placeholder="Username" class="auth-input">
+                        <input type="email" name="email" placeholder="Email" class="auth-input" >
+                        <input type="password" name="password" placeholder="Password" class="auth-input" >
+                        <input type="password" name="passwordtwo"  placeholder="Confirm Password" class="auth-input" >
+                        <button type="submit" class="auth-input-button">Sign Up</button>
+                        <div class="auth-p">
+                            <p class="text-base"> Do you have an account? <a href="/signin" class="auth-p"> Login </a></p>
+                        </div>
+                    </label>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>

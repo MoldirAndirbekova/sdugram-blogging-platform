@@ -1,0 +1,58 @@
+*{
+    font-family: 'Kulim Park', sans-serif;
+}
+body{
+    margin: 0;
+    background-color: #F7F8E4;
+}
+.navbar-auth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#060C46;
+    height: 150px;
+}
+.signin{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    grid-gap: 10rem;
+    align-items: center;
+}
+.login{
+    border-radius: 15px;
+    background-color:#060C46;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+.auth-input-label{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10px;
+}
+.auth-input{
+    background-color:#060C46;
+    border: 1px solid #F6BE00 !important;
+    border-radius: 8px;
+    height: 48px;
+    padding: 10px;
+    color: white;
+
+}
+input:focus {
+    color: #FFFFFF;
+}
+.auth-input-button{
+    background-color:#F6BE00;
+    height: 3rem;
+    border-radius: 8px;
+    width: 100%;
+}
+.auth-p{
+    color: white;
+    font-size: 1.2rem;
+}
