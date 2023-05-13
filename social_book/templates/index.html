@@ -31,7 +31,7 @@
 </style>
 <body>
         <div class="navbar-auth">
-        <img src="{% static 'images/logo.png' %} " height="80" width="370">
+        <a href="/"><img src="{% static 'images/logo.png' %} " height="80" width="370"></a>
                 </div>
 
             <header>
@@ -156,6 +156,7 @@
                         </a>
                         <div uk-drop="mode: click;offset:9" class="header_dropdown profile_dropdown border-t">
                             <ul>
+                                <li><a href="/profile/{{user_profile.user}}">My Page</a></li>
                                 <li><a href="/settings"> Account setting </a> </li>
                                 <li><a href="logout"> Log Out</a></li>
                             </ul>
