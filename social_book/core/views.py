@@ -181,7 +181,7 @@ def like_post(request):
         post.save()
         return redirect('/')
 
-
+@login_required(login_url='signin')
 def profile(request, pk):
     user_object = User.objects.get(username=pk)
     user_profile = Profile.objects.get(user=user_object)
