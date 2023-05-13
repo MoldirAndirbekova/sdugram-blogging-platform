@@ -6,14 +6,10 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Profile, Post, LikePost, FollowersCount, Comment
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from django.shortcuts import get_object_or_404
 from uuid import UUID
 import uuid
-
-=======
 import random
->>>>>>> fdcc84518bdce3992d821f2148e460957a557586
 
 # Create your views here.
 
@@ -23,7 +19,6 @@ def index(request):
     posts = Post.objects.all()
     user_objects = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_objects)
-<<<<<<< HEAD
     return render(request, 'index.html', {
         'user_profile': user_profile,
         'posts': posts,
@@ -55,8 +50,6 @@ def add_comment_to_post(request, id):
         form = CommentForm()
 
     return render(request, 'add_comment_to_post.html', {'form': form})
-=======
-
     user_following_list = []
     feed = []
 
@@ -96,11 +89,7 @@ def add_comment_to_post(request, id):
 
     suggestions_username_profile_list = list(chain(*username_profile_list))
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
->>>>>>> fdcc84518bdce3992d821f2148e460957a557586
-
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list, 'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
-
 
 
 def signup(request):
