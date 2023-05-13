@@ -1,20 +1,55 @@
 from itertools import chain
-
+from .forms import CommentForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from .models import Profile, Post, LikePost, FollowersCount
+from .models import Profile, Post, LikePost, FollowersCount, Comment
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from uuid import UUID
+import uuid
 
 
 # Create your views here.
+
+
 @login_required(login_url='signin')
 def index(request):
     posts = Post.objects.all()
     user_objects = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_objects)
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
+    return render(request, 'index.html', {
+        'user_profile': user_profile,
+        'posts': posts,
+    })
+
+
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    comments = post.comment_set.all()
+    context = {
+        'post': post,
+        'comments': comments
+    }
+    return render(request, 'post_detail.html', context)
+
+
+def add_comment_to_post(request, id):
+    post = get_object_or_404(Post, id=id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.user = request.user
+            comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+
+    return render(request, 'add_comment_to_post.html', {'form': form})
 
 
 def signup(request):
@@ -169,4 +204,3 @@ def search(request):
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html',
                   {'user_profile': user_profile, 'username_profile_list': username_profile_list})
-

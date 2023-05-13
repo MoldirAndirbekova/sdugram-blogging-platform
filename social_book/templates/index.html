@@ -167,6 +167,7 @@
                     <div class="space-y-5 flex-shrink-0 lg:w-7/12">
 
                         <!-- post 1-->
+                        {% block content %}
                         {% for posts in posts reversed%}
                         <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
     
@@ -285,6 +286,11 @@
                                 <p>
                                     <a href="#"> <strong> {{ posts.user }}:</strong> </a>{{posts.caption}}
                                 </p>
+
+                                <a href="post/{{posts.id}}/comment/">leave a comment</a>
+
+                                <a href="post_detail/{{posts.id}}/">COMMENTS</a>
+
 <!--                                <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative ">-->
 <!--                                    <input type="text" placeholder="post a comment" class="bg-transparent max-h-10 shadow-none">-->
 <!--                                    <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">-->
@@ -297,7 +303,7 @@
     
                         </div>
                         {% endfor %}
-
+                        {% endblock %}
                     </div>
 
                     <!-- right sidebar-->
