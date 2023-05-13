@@ -6,14 +6,10 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import Profile, Post, LikePost, FollowersCount, Comment
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from django.shortcuts import get_object_or_404
-from uuid import UUID
-import uuid
 
-=======
 import random
->>>>>>> fdcc84518bdce3992d821f2148e460957a557586
+
 
 # Create your views here.
 
@@ -23,7 +19,6 @@ def index(request):
     posts = Post.objects.all()
     user_objects = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_objects)
-<<<<<<< HEAD
     return render(request, 'index.html', {
         'user_profile': user_profile,
         'posts': posts,
@@ -55,7 +50,6 @@ def add_comment_to_post(request, id):
         form = CommentForm()
 
     return render(request, 'add_comment_to_post.html', {'form': form})
-=======
 
     user_following_list = []
     feed = []
@@ -71,7 +65,6 @@ def add_comment_to_post(request, id):
 
     feed_list = list(chain(*feed))
 
-    #user suggestion starts
     all_users = User.objects.all()
     user_following_all = []
 
@@ -97,10 +90,9 @@ def add_comment_to_post(request, id):
     suggestions_username_profile_list = list(chain(*username_profile_list))
 
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
->>>>>>> fdcc84518bdce3992d821f2148e460957a557586
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list, 'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
-
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
+                                          'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
 
 
 def signup(request):
@@ -141,11 +133,11 @@ def follow(request):
         if FollowersCount.objects.filter(follower=follower, user=user).first():
             delete_follower = FollowersCount.objects.get(follower=follower, user=user)
             delete_follower.delete()
-            return redirect('/profile/'+user)
+            return redirect('/profile/' + user)
         else:
             new_follower = FollowersCount.objects.create(follower=follower, user=user)
             new_follower.save()
-            return redirect('/profile/'+user)
+            return redirect('/profile/' + user)
     else:
         return redirect('/')
 
