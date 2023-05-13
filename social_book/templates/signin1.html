@@ -1,0 +1,47 @@
+{% load static %}
+
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in - SDUgram</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}"></link>
+</head>
+
+<body>
+    <div class="navbar-auth">
+        <img src="{% static 'images/logo.png' %} " height="80" width="370">
+    </div>
+    <div class="signin">
+        <div>
+            <p style="font-size: 2rem; margin-top: 0">Social Network for our students</p>
+            <img src="https://univery.kz/images/suleyman-demirel-university.jpg" width="400px" height="350">
+        </div>
+        <div class="login">
+            <img src="{% static 'images/logo1.png' %}" height="80" width="80" alt="">
+            <p style="color: white; font-size: 25px">Log In</p>
+             <form action="" method="POST">
+                 {% csrf_token %}
+                 {
+                 <label class="auth-input-label">
+                     <input type="text" name="username" placeholder="Username" class="auth-input" >
+                     <input type="password" name="password" placeholder="Password" class="auth-input">
+                      <div>
+                          {% for message in messages %}
+                            <h5 style="color:red">{{ message }}</h5>
+                          {% endfor %}
+                      </div>
+                     <button type="submit" class="auth-input-button">Login</button>
+                     <div class="auth-p">
+                        <p> Not registered?<a href="/signup" class="auth-p"> Create a account </a></p>
+                     </div>
+                 </label>
+             </form>
+        </div>
+    </div>
+</body>
+
+
+</html>

@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('post/<uuid:id>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    path('post_detail/<uuid:id>/', views.post_detail, name='post_detail'),
     path('signup', views.signup, name='signup'),
     path('signin', views.signin, name='signin'),
     path('logout', views.logout, name='logout'),

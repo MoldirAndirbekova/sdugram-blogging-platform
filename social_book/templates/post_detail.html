@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+
+  <h2>{{ post.caption }}</h2>
+  <img src="{{ post.image.url }}" alt="{{ post.caption }}">
+  <p>Posted by {{ post.user }} on {{ post.created_at }}</p>
+  <p>{{ post.number_of_likes }} likes</p>
+  <hr>
+  <h3>Comments</h3>
+  {% for comment in comments %}
+    <p>{{ comment.user }} said on {{ comment.date }}:</p>
+    <p>{{ comment.content }}</p>
+    <hr>
+  {% empty %}
+    <p>No comments yet.</p>
+  {% endfor %}
+{% endblock %}
