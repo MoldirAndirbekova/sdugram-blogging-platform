@@ -8,17 +8,13 @@ from .models import Profile, Post, LikePost, FollowersCount, Comment
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
-import random
-
-
-# Create your views here.
-
 
 @login_required(login_url='signin')
 def index(request):
     posts = Post.objects.all()
     user_objects = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_objects)
+
     return render(request, 'index.html', {
         'user_profile': user_profile,
         'posts': posts,
@@ -87,9 +83,12 @@ def add_comment_to_post(request, id):
         profile_lists = Profile.objects.filter(id_user=ids)
         username_profile_list.append(profile_lists)
 
-    suggestions_username_profile_list = list(chain(*username_profile_list))
+    sugg_username_profile_list = list(chain(*username_profile_list))
 
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
+
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
+                                          'sugg_username_profile_list': sugg_username_profile_list[:4]})
 
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
                                           'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
@@ -217,6 +216,7 @@ def like_post(request):
         return redirect('/')
 
 
+@login_required(login_url='signin')
 def profile(request, pk):
     user_object = User.objects.get(username=pk)
     user_profile = Profile.objects.get(user=user_object)
