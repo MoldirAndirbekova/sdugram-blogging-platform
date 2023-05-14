@@ -772,7 +772,7 @@ header.sticky {
 }
 
 .timeline-info {
-    background: ##b0b3b8 none repeat scroll 0 0;
+    background: #b0b3b8 none repeat scroll 0 0;
     display: block;
     line-height: 59px;
     width: 100%;
@@ -3793,7 +3793,7 @@ form .form-group.half:nth-child(2) {
 
 .chosen-container-single .chosen-single {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-    border-color: -moz-use-text-color -moz-use-text-color #e1e8ed;
+    border-color: #e1e8ed;
     border-radius: 0;
     border-style: none none solid;
     border-width: 0 0 1px;

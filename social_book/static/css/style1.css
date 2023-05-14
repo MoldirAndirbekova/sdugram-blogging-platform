@@ -33,6 +33,7 @@ body{
     display: flex;
     flex-direction: column;
     grid-gap: 10px;
+
 }
 .auth-input{
     background-color:#060C46;
@@ -49,7 +50,7 @@ input:focus {
     background-color:#F6BE00;
     height: 3rem;
     border-radius: 8px;
-    width: 80%;
+    width: 100%;
 }
 .auth-p{
     color: white;
