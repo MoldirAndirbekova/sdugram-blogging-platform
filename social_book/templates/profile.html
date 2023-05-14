@@ -146,14 +146,16 @@
 							<div class="col-lg-6">
 								<div class="central-meta">
 									<ul class="photos">
-
+										{% if user_post_length == 0 %}
+										<h4>No posts...</h4>
+										{% else %}
 										{% for post in user_posts %}
 										<li>
 											<a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
 												<img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt=""></a>
 										</li>
 										{% endfor %}
-
+										{% endif %}
 
 
 									</ul>
