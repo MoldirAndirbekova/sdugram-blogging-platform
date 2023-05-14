@@ -16,7 +16,7 @@ html,body{
 }
 
 .bio{
-    text-align: justify !important; width: 1100px; color: #000; font-family: calibri; margin-left:5%;text-decoration: none;outline: none;
+    text-align: justify !important; width: 1100px; color: #000; font-family: Arial, Helvetica, sans-serif; margin-left:5%;text-decoration: none;outline: none;
 }
 
 body {
@@ -730,6 +730,7 @@ header.sticky {
 
 .feature-photo .container-fluid {
     padding: 0 43px;
+    background-color: #F7F8E4;
 }
 
 .feature-photo {
