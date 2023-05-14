@@ -5,6 +5,11 @@ body{
     margin: 0;
     background-color: #F7F8E4;
 }
+.alert {
+  padding: 20px;
+  background-color: #2adb4d;
+  color: white;
+}
 .navbar-auth{
     display: flex;
     align-items: center;

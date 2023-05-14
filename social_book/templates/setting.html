@@ -26,15 +26,21 @@
     <div class="settings">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <div style="text-align: center">
+                    <div class="success" role="alert">
+                        {%for message in messages%}
+                        {{message}}
+                        {% endfor %}
+                    </div>
             <div class="auth-input-label" style="display: flex;padding: 20px; background-color: #060C46; ">
                 <p style="font-size: 2rem; margin-top: 0; color: white">Account settings for {{user_profile.user}}</p>
                 <div >
                     <label class="label-settings"> First name:</label>
-                    <input type="text" placeholder="Your first name.." class="auth-input" style="width: 70%">
+                    <input type="text" placeholder="Your first name.." class="auth-input" style="width: 70%" required>
                 </div>
                 <div>
                     <label class="label-settings"> Last name:</label>
-                    <input type="text" placeholder="Your last name.." class="auth-input" style="width: 70%">
+                    <input type="text" placeholder="Your last name.." class="auth-input" style="width: 70%" required>
                 </div>
                 <div >
                     <label class="label-settings"> Email:</label>
@@ -56,12 +62,7 @@
                     <input type="text" value="{{user_profile.location}}" name="location" placeholder="" class="auth-input">
                 </div>
 
-                <div style="text-align: center">
-                    <div class="success" role="alert">
-                        {%for message in messages%}
-                        {{message}}
-                        {% endfor %}
-                    </div>
+
                     <button class="auth-input-button" style=""><a href="/">Cancel</a></button>
                     <button type="submit" class="auth-input-button"> Save</button>
                 </div>
