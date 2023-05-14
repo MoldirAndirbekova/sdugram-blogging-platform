@@ -32,7 +32,7 @@ header{
     color:white;
 }
 .navbar-auth{
-    margin-top: 0px;
+    margin-top: -55px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
