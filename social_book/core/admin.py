@@ -8,9 +8,7 @@ from .models import Profile, Post, LikePost, FollowersCount
 
 from .models import Profile, Post, LikePost, Comment
 from . import models
-
-
-from .models import Profile, Post, LikePost, FollowersCount
+from .models import Profile, Post, LikePost, FollowersCount,Comment
 
 
 # Register your models here.
