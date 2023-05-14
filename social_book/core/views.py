@@ -64,6 +64,7 @@ def index(request):
                                           'sugg_username_profile_list': sugg_username_profile_list[:4]})
 
 
+
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
     comments = post.comment_set.all()
