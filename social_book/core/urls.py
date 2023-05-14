@@ -14,4 +14,9 @@ urlpatterns = [
     path('follow', views.follow, name='follow'),
     path('like_post', views.like_post, name='like_post'),
     path('search', views.search, name='search'),
+    # Update post
+    path('post/update/<uuid:post_id>/', views.update_post, name='update_post'),
+
+    # Delete post
+    path('post/delete/<uuid:post_id>/', views.delete_post, name='delete_post'),
 ]

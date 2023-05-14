@@ -268,3 +268,59 @@ def search(request):
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html',
                   {'user_profile': user_profile, 'username_profile_list': username_profile_list, 'search': username})
+
+
+# def update_post(request, post_id):
+#     if request.method == 'POST':
+#         # Retrieve the post to be updated
+#         try:
+#             post = Post.objects.get(id=post_id, user=request.user)
+#         except Post.DoesNotExist:
+#             # Post not found or user doesn't own the post
+#             return redirect('index')  # Or any appropriate URL
+#
+#         # Process the updated post data
+#         # Example: updating the post's content
+#         post.content = request.POST.get('content')
+#         post.save()
+#
+#         return redirect('index')  # Or any appropriate URL
+#
+#     # If the request is not a POST request, render the update post form
+#     try:
+#         post = Post.objects.get(id=post_id, user=request.user)
+#     except Post.DoesNotExist:
+#         # Post not found or user doesn't own the post
+#         return redirect('index')  # Or any appropriate URL
+#
+#     context = {
+#         'post': post,
+#     }
+#     return render(request, 'update_post.html', context)
+
+
+def delete_post(request, post_id):
+    if request.method == 'POST':
+        # Retrieve the post to be deleted
+        try:
+            post = Post.objects.get(id=post_id, user=request.user)
+        except Post.DoesNotExist:
+            # Post not found or user doesn't own the post
+            return redirect('index')  # Or any appropriate URL
+
+        # Delete the post
+        post.delete()
+
+        return redirect('index')  # Or any appropriate URL
+
+    # If the request is not a POST request, render the delete post confirmation page
+    try:
+        post = Post.objects.get(id=post_id, user=request.user)
+    except Post.DoesNotExist:
+        # Post not found or user doesn't own the post
+        return redirect('index')  # Or any appropriate URL
+
+    context = {
+        'post': post,
+    }
+    return render(request, 'delete_post.html', context)

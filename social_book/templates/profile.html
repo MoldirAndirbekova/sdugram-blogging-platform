@@ -142,29 +142,31 @@
 
 
 
-
-							<div class="col-lg-6">
-								<div class="central-meta">
-									<ul class="photos">
-
-										{% for post in user_posts %}
-										<li>
-											<a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
-												<img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt=""></a>
-										</li>
-										{% endfor %}
-
-
-
-									</ul>
-									<!--<div class="lodmore"><button class="btn-view btn-load-more"></button></div>-->
-								</div><!-- photos -->
-							</div><!-- centerl meta -->
-							<div class="col-lg-3">
-								<aside class="sidebar static">
-
-								</aside>
-							</div><!-- sidebar -->
+<div class="col-lg-6">
+  <div class="central-meta">
+    <ul class="photos">
+      {% for post in user_posts %}
+        <li>
+          <a class="strip" href="{{post.image.url}}" title="" data-strip-group="mygroup" data-strip-group-options="loop: false">
+            <img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt="">
+          </a>
+          <!-- Add update and delete buttons -->
+          <div class="post-actions">
+            <form action="{% url 'update_post' post.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn-action" title="Update Post">Update</button>
+            </form>
+            <form action="{% url 'delete_post' post.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn-action" title="Delete Post">Delete</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+    <!--<div class="lodmore"><button class="btn-view btn-load-more"></button></div>-->
+  </div><!-- photos -->
+</div><!-- centerl meta -->
 						</div>
 					</div>
 				</div>
