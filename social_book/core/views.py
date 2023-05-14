@@ -12,20 +12,12 @@ import uuid
 
 import random
 
+
 # Create your views here.
 
 
 @login_required(login_url='signin')
 def index(request):
-    posts = Post.objects.all()
-
-    user_objects = User.objects.get(username=request.user.username)
-    user_profile = Profile.objects.get(user=user_objects)
-    return render(request, 'index.html', {
-        'user_profile': user_profile,
-        'posts': posts,
-    })
-
     user_object = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_object)
 
@@ -68,8 +60,13 @@ def index(request):
 
     sugg_username_profile_list = list(chain(*username_profile_list))
 
+<<<<<<< HEAD
 
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,sugg_username_profile_list: 'sugg_username_profile_list[:4]'})
+=======
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
+                                          'sugg_username_profile_list': sugg_username_profile_list[:4]})
+>>>>>>> 5c4cf9a5d4d4dfbe1469b4b193c72bfb1abdcf1f
 
 
 def post_detail(request, id):
@@ -137,11 +134,11 @@ def follow(request):
         if FollowersCount.objects.filter(follower=follower, user=user).first():
             delete_follower = FollowersCount.objects.get(follower=follower, user=user)
             delete_follower.delete()
-            return redirect('/profile/'+user)
+            return redirect('/profile/' + user)
         else:
             new_follower = FollowersCount.objects.create(follower=follower, user=user)
             new_follower.save()
-            return redirect('/profile/'+user)
+            return redirect('/profile/' + user)
     else:
         return redirect('/')
 
@@ -185,7 +182,7 @@ def settings(request):
             user_profile.location = location
             user_profile.save()
             messages.info(request, 'Profile has been updated successfully!')
-        return redirect('settings')
+        return redirect('index')
     return render(request, 'setting.html', {'user_profile': user_profile})
 
 
