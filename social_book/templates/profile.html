@@ -24,37 +24,38 @@
 
 	</div>
 
-	<section>
+	<section style="background-color: #F7F8E4 ">
 			<div class="feature-photo">
-				<figure><img src="{% static 'images/resources/timeline-1.jpg' %}" alt=""></figure>
+				<figure><img src="{% static 'images/resources/IMG_5165.PNG' %}" style="height: 300px" alt=""></figure>
 				<form action="/follow" method="POST">
+
 					{% csrf_token %}
-					<div class="add-btn">
-					<span style="color: white; font-size: 27px; margin-right: 520px;"><b><u><a href="/">Home</a></u></b></span>
+					<div class="add-btn" >
+					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b><u><a href="/">Home</a></u></b></span>
 
 					{% if user_post_length == 0 %}
 					<span style="color: white; font-size: 27px;"><b>No Post</b></span>
 					{% elif user_post_length == 1 %}
-					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Post</b></span>
+					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b>{{user_post_length}} Post</b></span>
 					{% else %}
-					<span style="color: white; font-size: 27px;"><b>{{user_post_length}} Posts</b></span>
+					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b>{{user_post_length}} Posts</b></span>
 					{% endif %}
 
 					{% if user_followers == 0 or user_followers == 1 %}
-					<span style="color: white; font-size: 27px;"><b>{{user_followers}} follower</b></span>
+					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b>{{user_followers}} follower</b></span>
 					{% else %}
-					<span style="color: white; font-size: 27px;"><b>{{user_followers}} followers</b></span>
+					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b>{{user_followers}} followers</b></span>
 					{% endif %}
 
-					<span style="color: white; font-size: 27px;"><b>{{user_following}} following</b></span>
+					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b>{{user_following}} following</b></span>
 
 					<input type="hidden" value="{{user.username}}" name="follower" />
 					<input type="hidden" value="{{user_object.username}}" name="user" />
 
 					{% if user_object.username == user.username %}
-					<a href="/settings" data-ripple="">Account Settings</a>
+					<a href="/settings" style="font-family: Arial, Helvetica, sans-serif;" data-ripple="">Account Settings</a>
 					{% else %}
-					<a data-ripple=""><button type="submit" style="background-color: #ffc0cb; border: #ffc0cb;">{{button_text}}</button></a>
+					<a data-ripple="" style="background-color: #F6BE00"><button type="submit" style="background-color: #FFC0CB; color: #060C46; border: #F6BE00; font-family: Arial, Helvetica, sans-serif">{{button_text}}</button></a>
 					{% endif %}
 
 					</div>
@@ -67,10 +68,10 @@
 					<input type="file"/>
 					</label>
 				</form> -->
-				<div class="container-fluid">
-					<div class="row merged">
-						<div class="col-lg-2 col-sm-3">
-							<div class="user-avatar">
+				<div class="container-fluid" style="background-color: #F7F8E4">
+					<div class="row merged" style="background-color: #F7F8E4">
+						<div class="col-lg-2 col-sm-3" style="background-color: #F7F8E4">
+							<div class="user-avatar" style="background-color: #F7F8E4">
 								<figure>
 									<img src=" {{user_profile.profileImg.url}} " style="height: 250px; width: 100%;" alt="">
 									<!-- <form class="edit-phto">
@@ -86,7 +87,7 @@
 							<div class="timeline-info">
 								<ul>
 									<li class="admin-name">
-									  <h5 style="color: black;white-space: nowrap; width: 110px; font-size: 27px;"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
+									  <h5 style="color: #060C46; white-space: nowrap; margin-top: 10px; width: 110px; font-size: 30px; font-family: Arial, Helvetica, sans-serif"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
 									  <!--<span>Group Admin</span>-->
 									</li>
 									<!--<li>
@@ -112,14 +113,15 @@
 				</div>
 			</div>
 		</section><!-- top area -->
-		<section>
-			<div class="bio">
+		<section style="background-color: #F7F8E4">
+			<hr style="margin-right: 50px; margin-left: 50px; color: #060C46">
+			<div class="bio" style="font-family: Arial, Helvetica, sans-serif; color: #060C46">
 					{{user_profile.bio}}
 			</div>
 		</section>
 
 	<section>
-		<div class="gap gray-bg">
+		<div class="gap gray-bg" style="background-color: #F7F8E4">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
