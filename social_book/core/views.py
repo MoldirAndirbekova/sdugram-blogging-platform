@@ -60,7 +60,9 @@ def index(request):
 
     sugg_username_profile_list = list(chain(*username_profile_list))
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,'sugg_username_profile_list': sugg_username_profile_list[:4]})
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
+                                          'sugg_username_profile_list': sugg_username_profile_list[:4]})
+
 
 def post_detail(request, id):
     user_object = User.objects.get(username=request.user.username)
@@ -70,7 +72,7 @@ def post_detail(request, id):
     context = {
         'post': post,
         'comments': comments,
-        'user_profile':user_profile
+        'user_profile': user_profile
     }
     return render(request, 'post_detail.html', context)
 
@@ -92,7 +94,7 @@ def add_comment_to_post(request, id):
 
     return render(request, 'add_comment_to_post.html', {
         'form': form,
-        'user_profile':user_profile
+        'user_profile': user_profile
     })
 
 
@@ -265,4 +267,4 @@ def search(request):
 
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html',
-                  {'user_profile': user_profile, 'username_profile_list': username_profile_list, 'search':username})
+                  {'user_profile': user_profile, 'username_profile_list': username_profile_list, 'search': username})
