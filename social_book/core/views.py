@@ -60,9 +60,7 @@ def index(request):
 
     sugg_username_profile_list = list(chain(*username_profile_list))
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
-                                          'sugg_username_profile_list': sugg_username_profile_list[:4]})
-
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,'sugg_username_profile_list': sugg_username_profile_list[:4]})
 
 
 def post_detail(request, id):
@@ -261,4 +259,4 @@ def search(request):
 
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html',
-                  {'user_profile': user_profile, 'username_profile_list': username_profile_list})
+                  {'user_profile': user_profile, 'username_profile_list': username_profile_list, 'search':username})

@@ -26,8 +26,9 @@
 
 	<section style="background-color: #F7F8E4 ">
 			<div class="feature-photo">
-				<figure><img src="{% static 'images/resources/IMG_5165.PNG' %}" style="height: 300px; font-synthesis-weight: " alt=""></figure>
+				<figure><img src="{% static 'images/resources/IMG_5165.PNG' %}" style="height: 300px" alt=""></figure>
 				<form action="/follow" method="POST">
+
 					{% csrf_token %}
 					<div class="add-btn" >
 					<span style="color: #F6BE00; font-size: 27px; font-family: Arial, Helvetica, sans-serif"><b><u><a href="/">Home</a></u></b></span>
