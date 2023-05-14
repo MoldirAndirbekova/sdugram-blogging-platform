@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Update Post</h1>
-    <form action="{% url 'update_post' post.id %}" method="POST">
+    <form  method="POST">
         {% csrf_token %}
         <input type="text" name="content" value="{{ post.created_at }}">
         <button type="submit">Update</button>

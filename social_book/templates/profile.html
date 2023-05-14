@@ -152,7 +152,7 @@
           </a>
           <!-- Add update and delete buttons -->
           <div class="post-actions">
-            <form action="{% url 'update_post' post.id %}" method="POST">
+            <form  method="POST">
               {% csrf_token %}
               <button type="submit" class="btn-action" title="Update Post">Update</button>
             </form>
