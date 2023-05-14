@@ -60,13 +60,10 @@ def index(request):
 
     sugg_username_profile_list = list(chain(*username_profile_list))
 
-<<<<<<< HEAD
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,sugg_username_profile_list: 'sugg_username_profile_list[:4]'})
-=======
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
                                           'sugg_username_profile_list': sugg_username_profile_list[:4]})
->>>>>>> 5c4cf9a5d4d4dfbe1469b4b193c72bfb1abdcf1f
+
 
 
 def post_detail(request, id):
