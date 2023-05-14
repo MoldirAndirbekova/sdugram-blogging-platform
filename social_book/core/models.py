@@ -4,7 +4,7 @@ from django.contrib import auth
 import uuid
 from datetime import datetime
 
-# Create your models here.
+
 User = get_user_model()
 
 

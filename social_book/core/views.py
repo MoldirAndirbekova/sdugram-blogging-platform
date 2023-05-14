@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from uuid import UUID
 import uuid
-import random
 
+import random
 
 # Create your views here.
 
@@ -18,6 +18,14 @@ import random
 @login_required(login_url='signin')
 def index(request):
     posts = Post.objects.all()
+
+    user_objects = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_objects)
+    return render(request, 'index.html', {
+        'user_profile': user_profile,
+        'posts': posts,
+    })
+
     user_object = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_object)
 
@@ -60,11 +68,9 @@ def index(request):
 
     sugg_username_profile_list = list(chain(*username_profile_list))
 
-    '''return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})'''
 
     return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
                                           'sugg_username_profile_list': sugg_username_profile_list[:4]})
-
 
 
 def post_detail(request, id):
@@ -92,6 +98,7 @@ def add_comment_to_post(request, id):
         form = CommentForm()
 
     return render(request, 'add_comment_to_post.html', {'form': form})
+
 
 def signup(request):
     if request.method == "POST":
@@ -214,7 +221,7 @@ def like_post(request):
         post.save()
         return redirect('/')
 
-@login_required(login_url='signin')
+
 def profile(request, pk):
     user_object = User.objects.get(username=pk)
     user_profile = Profile.objects.get(user=user_object)

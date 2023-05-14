@@ -2,7 +2,12 @@
 {% block content %}
 
   <h2>{{ post.caption }}</h2>
-  <img src="{{ post.image.url }}" alt="{{ post.caption }}">
+
+  <div uk-lightbox>
+    <a href="{{post.image.url}}">
+      <img width="1000rem" height="1000rem" src="{{ post.image.url }}" alt="">
+    </a>
+  </div>
   <p>Posted by {{ post.user }} on {{ post.created_at }}</p>
   <p>{{ post.number_of_likes }} likes</p>
   <hr>
