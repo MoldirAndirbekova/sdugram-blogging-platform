@@ -7,6 +7,12 @@ from django.contrib import messages
 from .models import Profile, Post, LikePost, FollowersCount, Comment
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from uuid import UUID
+import uuid
+
+import random
+
+# Create your views here.
 
 
 @login_required(login_url='signin')
@@ -14,7 +20,6 @@ def index(request):
     posts = Post.objects.all()
     user_objects = User.objects.get(username=request.user.username)
     user_profile = Profile.objects.get(user=user_objects)
-
     return render(request, 'index.html', {
         'user_profile': user_profile,
         'posts': posts,
@@ -46,52 +51,6 @@ def add_comment_to_post(request, id):
         form = CommentForm()
 
     return render(request, 'add_comment_to_post.html', {'form': form})
-
-    user_following_list = []
-    feed = []
-
-    user_following = FollowersCount.objects.filter(follower=request.user.username)
-
-    for users in user_following:
-        user_following_list.append(users.user)
-
-    for usernames in user_following_list:
-        feed_lists = Post.objects.filter(user=usernames)
-        feed.append(feed_lists)
-
-    feed_list = list(chain(*feed))
-
-    all_users = User.objects.all()
-    user_following_all = []
-
-    for user in user_following:
-        user_list = User.objects.get(username=user.user)
-        user_following_all.append(user_list)
-
-    new_suggestions_list = [x for x in list(all_users) if (x not in list(user_following_all))]
-    current_user = User.objects.filter(username=request.user.username)
-    final_suggestions_list = [x for x in list(new_suggestions_list) if (x not in list(current_user))]
-    random.shuffle(final_suggestions_list)
-
-    username_profile = []
-    username_profile_list = []
-
-    for users in final_suggestions_list:
-        username_profile.append(users.id)
-
-    for ids in username_profile:
-        profile_lists = Profile.objects.filter(id_user=ids)
-        username_profile_list.append(profile_lists)
-
-    sugg_username_profile_list = list(chain(*username_profile_list))
-
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': posts})
-
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
-                                          'sugg_username_profile_list': sugg_username_profile_list[:4]})
-
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
-                                          'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
 
 
 def signup(request):
@@ -132,11 +91,11 @@ def follow(request):
         if FollowersCount.objects.filter(follower=follower, user=user).first():
             delete_follower = FollowersCount.objects.get(follower=follower, user=user)
             delete_follower.delete()
-            return redirect('/profile/' + user)
+            return redirect('/profile/'+user)
         else:
             new_follower = FollowersCount.objects.create(follower=follower, user=user)
             new_follower.save()
-            return redirect('/profile/' + user)
+            return redirect('/profile/'+user)
     else:
         return redirect('/')
 
@@ -216,7 +175,6 @@ def like_post(request):
         return redirect('/')
 
 
-@login_required(login_url='signin')
 def profile(request, pk):
     user_object = User.objects.get(username=pk)
     user_profile = Profile.objects.get(user=user_object)
