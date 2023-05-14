@@ -31,7 +31,8 @@
 </style>
 <body>
         <div class="navbar-auth">
-            <a href="/"><img src="{% static 'images/logo.png' %} " height="80" width="370"></a>
+        <a href="/"><img src="{% static 'images/logo.png' %} " height="80" width="370"></a>
+                </div>
         </div>
 
             <header>
@@ -63,14 +64,14 @@
                         <a href="#"
                             class="bg-pink-500 flex font-bold hidden hover:bg-pink-600 hover:text-white inline-block items-center lg:block max-h-10 mr-4 px-4 py-2 rounded shado text-white" id="upload-btn">
                             <ion-icon name="add-circle" class="-mb-1
-                             mr-1 opacity-90 text-xl uilus-circle"></ion-icon> Upload Pics
+                             mr-1 opacity-90 text-xl uilus-circle"></ion-icon> Upload Post
                         </a>
                          <!-- upload dropdown box -->
                         <div uk-dropdown="pos: bottom-right;mode:click ; animation: uk-animation-slide-bottom-small" class="header_dropdown">
     
                             <!-- notivication header -->
-                            <div class="px-4 py-3 -mx-5 -mt-4 mb-5 border-b">
-                                <h4>Upload Pics</h4>
+                            <div class="px-4 py-3 -mx-5 -mt-4 mb-5 border-b ">
+                                <h4>Upload Post</h4>
                             </div>
     
                             <!-- notification contents -->
@@ -87,14 +88,14 @@
                                     <form action="upload" method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                     <p class="my-3 leading-6">
-                                        Upload pics
+                                        Upload pictures
                                     </p>
                                     <div >
                                         <input type="file" name = 'image_upload'>
 <!--                                        <a href="#" class="button soft-warning small"> Choose file</a>-->
                                         <textarea class="button soft-warning small" name="caption" placeholder="Caption..."></textarea>
                                         <br>
-                                        <button class="button bg-blue-700" type="submit">Upload</button>
+                                        <button class="btn btn-warning" type="submit">Upload</button>
                                     </div>
                                     </form>
                                 </div>
@@ -117,39 +118,8 @@
     
                             </div>
                         </div>
-                        
-                         <!-- Notification -->
-
-<!-- -->
-
-                        <!-- Messages -->
-
-<!--                        <a href="#" class="header-links-item">-->
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="0.5em" height="0.5em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="currentColor"><path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/></g></svg>-->
-<!--                        </a>-->
-<!--                        <div uk-drop="mode: click;offset: 4" class="header_dropdown">-->
-<!--                            <h4-->
-<!--                                class="-mt-5 -mx-5 bg-gradient-to-t from-gray-100 to-gray-50 border-b font-bold px-6 py-3">-->
-<!--                                Messages </h4>-->
-<!--                            <ul class="dropdown_scrollbar" data-simplebar>-->
-<!--                                <li>-->
-<!--                                    <a href="#">-->
-<!--                                        <div class="drop_avatar"> <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="">-->
-<!--                                        </div>-->
-<!--                                        <div class="drop_content">-->
-<!--                                            <strong> Taiye </strong> <time> 6:43 PM</time>-->
-<!--                                            <p> hi tomi </p>-->
-<!--                                        </div>-->
-<!--                                    </a>-->
-<!--                                </li>-->
-<!--                                -->
 
 
-<!--                            </ul>-->
-<!--                            <a href="#" class="see-all">See all</a>-->
-<!--                        </div>-->
-
-                        <!-- profile -->
 
                         <a href="">
                             <img src="{{user_profile.profileImg.url}}" class="header-avatar" alt="">
@@ -164,18 +134,18 @@
                     </div>
                 </div>
             </header>
-
             <div class="container m-auto" style="width:150% ">
 
-                <!--<h1 class="lg:text-2xl text-lg font-extrabold leading-none text-gray-900 tracking-tight mb-5"> Feed </h1>--->
 
                 <div class="lg:flex justify-center lg:space-x-10 lg:space-y-0 space-y-5">
 
-                    <!-- left sidebar-->
                     <div class="space-y-5 flex-shrink-0 lg:w-7/12">
 
                         <!-- post 1-->
                         {% block content %}
+                        {% if posts|length == 0 %}
+                        <h1>Please subscribe to anyone to see news line</h1>
+                        {% else %}
                         {% for posts in posts reversed%}
                         <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0" id="block">
     
@@ -272,28 +242,6 @@
                                 </div>
 
 
-<!--                                <div class="border-t pt-4 space-y-4 ">
-                                    <div class="flex">
-                                        <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">
-                                        </div>
-                                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">
-                                            <p class="leading-6">Y'all like billie eillish? <urna class="i uil-heart"></urna> <i
-                                                    class="uil-grin-tongue-wink"> </i> </p>
-                                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>
-                                        </div>
-                                    </div>
-                                    <div class="flex">
-                                        <div class="w-10 h-10 rounded-full relative flex-shrink-0">
-                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">
-                                        </div>
-                                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">
-                                            <p class="leading-6">She's my favourite <i class="uil-grin-tongue-wink-alt"></i>
-                                            </p>
-                                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>
-                                        </div>
-                                    </div>
-                                </div>-->
 
                                 <p>
                                     <a href="#"> <strong> {{ posts.user }}:</strong> </a>{{posts.caption}}
@@ -303,18 +251,14 @@
 
                                 <a href="post_detail/{{posts.id}}/">read comments</a>
 
-<!--                                <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative ">-->
-<!--                                    <input type="text" placeholder="post a comment" class="bg-transparent max-h-10 shadow-none">-->
-<!--                                    <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">-->
-<!--                                        <a href="#"> <i class="uil-image"></i></a>-->
-<!--                                        <a href="#"> <i class="uil-video"></i></a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+
     
                             </div>
     
                         </div>
                         {% endfor %}
+                        {%  endif %}
+
                         {% endblock %}
                     </div>
 
@@ -340,7 +284,6 @@
                                             <span class="block capitalize text-sm"> {{suggestion.bio}} </span>
                                         </div>
                                     </div>
-                                    
                                     <a href="/profile/{{suggestion.user}}" class="border border-gray-200 font-semibold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white hover:border-pink-600 "> View User </a>
                                 </div>
                                 {% endfor %}

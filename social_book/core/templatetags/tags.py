@@ -1,7 +1,6 @@
 from django import template
 from core.models import User, Profile
 
-
 register = template.Library()
 
 
@@ -12,3 +11,8 @@ def getprofile(post):
     return profile.profileImg.url
 
 
+@register.simple_tag()
+def getnav(post):
+    user = User.objects.get(username=post.user)
+    profile = Profile.objects.get(user=user)
+    return prof

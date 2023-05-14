@@ -60,22 +60,27 @@ def index(request):
 
     sugg_username_profile_list = list(chain(*username_profile_list))
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,'sugg_username_profile_list': sugg_username_profile_list[:4]})
+    return render(request, 'index.html', {'user_profile': user_profile, 'posts': feed_list,
+                                          'sugg_username_profile_list': sugg_username_profile_list[:4]})
 
 
 def post_detail(request, id):
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
     post = get_object_or_404(Post, id=id)
     comments = post.comment_set.all()
     context = {
         'post': post,
-        'comments': comments
+        'comments': comments,
+        'user_profile': user_profile
     }
     return render(request, 'post_detail.html', context)
 
 
 def add_comment_to_post(request, id):
     post = get_object_or_404(Post, id=id)
-
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -87,7 +92,10 @@ def add_comment_to_post(request, id):
     else:
         form = CommentForm()
 
-    return render(request, 'add_comment_to_post.html', {'form': form})
+    return render(request, 'add_comment_to_post.html', {
+        'form': form,
+        'user_profile': user_profile
+    })
 
 
 def signup(request):
@@ -259,4 +267,4 @@ def search(request):
 
         username_profile_list = list(chain(*username_profile_list))
     return render(request, 'search.html',
-                  {'user_profile': user_profile, 'username_profile_list': username_profile_list, 'search':username})
+                  {'user_profile': user_profile, 'username_profile_list': username_profile_list, 'search': username})

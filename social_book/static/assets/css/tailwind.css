@@ -758,7 +758,7 @@ video {
 
 .bg-pink-100{
   --tw-bg-opacity: 1;
-  background-color: rgba(252, 231, 243, var(--tw-bg-opacity));
+  background-color: rgb(234 179 8);
 }
 
 .bg-pink-400{
