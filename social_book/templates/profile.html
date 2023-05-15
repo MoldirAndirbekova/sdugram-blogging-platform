@@ -10,7 +10,6 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 	<title>Profile - {{user_profile.user.username}}</title>
-   <!-- <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16"> -->
 
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -19,7 +18,6 @@
 
 </head>
 <body>
-<!--<div class="se-pre-con"></div>-->
 <div class="theme-layout">
 
 	</div>
@@ -61,25 +59,14 @@
 					</div>
 				</form>
 
-				<!-- <form class="edit-phto">
-					<i class="fa fa-camera-retro"></i>
-					<label class="fileContainer">
-						Upload Cover Photo
-					<input type="file"/>
-					</label>
-				</form> -->
+
 				<div class="container-fluid" style="background-color: #F7F8E4">
 					<div class="row merged" style="background-color: #F7F8E4">
 						<div class="col-lg-2 col-sm-3" style="background-color: #F7F8E4">
 							<div class="user-avatar" style="background-color: #F7F8E4">
 								<figure>
 									<img src=" {{user_profile.profileImg.url}} " style="height: 250px; width: 100%;" alt="">
-									<!-- <form class="edit-phto">
-										<i class="fa fa-camera-retro"></i>
-										<label class="fileContainer">
-											<a href="#account-settings">Upload Profile Photo</a>
-										</label>
-									</form> -->
+
 								</figure>
 							</div>
 						</div>
@@ -88,24 +75,8 @@
 								<ul>
 									<li class="admin-name">
 									  <h5 style="color: #060C46; white-space: nowrap; margin-top: 10px; width: 110px; font-size: 30px; font-family: Arial, Helvetica, sans-serif"><b>@{{user_profile.user.username}}</b><!--<i class="fa fa-check-circle" style="color: #48dbfb;" aria-hidden="true"></i>--></h5>
-									  <!--<span>Group Admin</span>-->
 									</li>
-									<!--<li>
-										<a class="" href="javascript:void(0)" title="" data-ripple="">Go live!</a>
-										<a class="" href="javascript:void(0)" title="" data-ripple="">Music</a>
-										<a class="" href="emporium/index-3.html" title="" data-ripple="">Emporium</a>
-										<a class="" href="fitness/index.html" title="" data-ripple="">Health Inspection</a>
-										<a class="" href="settings/account-setting.html" title="" data-ripple="">Settings</a>
-										<a class="" href="javascript:void(0)" title="" data-ripple="">Upload</a>
-										<a class="" href="time-line.html" title="" data-ripple="">time line</a>
-										<a class="" href="timeline-photos.html" title="" data-ripple="">Photos</a>
-										<a class="" href="timeline-videos.html" title="" data-ripple="">Videos</a>
-										<a class="" href="timeline-friends.html" title="" data-ripple="">Friends</a>
-										<a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
-										<a class="" href="about.html" title="" data-ripple="">about</a>
-										<a class="" href="#" title="" data-ripple="">more</a>
 
-									</li>-->
 								</ul>
 							</div>
 						</div>
@@ -151,20 +122,17 @@
             <img src="{{post.image.url}}" style="height: 250px; width: 300px;" alt="">
           </a>
           <!-- Add update and delete buttons -->
+			{% if post.user == user.username %}
           <div class="post-actions">
-            <form  method="POST">
-              {% csrf_token %}
-              <button type="submit" class="btn-action" title="Update Post">Update</button>
-            </form>
             <form action="{% url 'delete_post' post.id %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn-action" title="Delete Post">Delete</button>
             </form>
           </div>
+			{% endif %}
         </li>
       {% endfor %}
     </ul>
-    <!--<div class="lodmore"><button class="btn-view btn-load-more"></button></div>-->
   </div><!-- photos -->
 </div><!-- centerl meta -->
 						</div>
