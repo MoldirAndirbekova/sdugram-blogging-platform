@@ -1,0 +1,33 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_REGISTRY: https://hub.docker.com/r/wel17/lab2
+  DOCKER_IMAGE_NAME: lab2
+  DOCKER_IMAGE_TAG: $CI_COMMIT_REF_NAME
+
+# Define stagescom
+build:
+  stage: build
+  script:
+    - echo "Building Docker image..."
+    - docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG .
+    - echo "Logging in to Docker Hub..."
+    - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
+    - echo "Pushing Docker image to Docker Hub..."
+    - docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying Docker container..."
+    - docker pull $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+    - docker run -d -p 80:80 $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+  only:
+    - master # Only deploy when changes are pushed to the master branch
+
+# Define environment variables for Docker Hub login
+before_script:
+  - export DOCKER_HUB_USERNAME=<your-docker-hub-username>
+  - export DOCKER_HUB_PASSWORD=<your-docker-hub-password>
