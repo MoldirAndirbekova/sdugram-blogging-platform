@@ -298,7 +298,6 @@ def search(request):
 #     }
 #     return render(request, 'update_post.html', context)
 
-
 def delete_post(request, post_id):
     if request.method == 'POST':
         # Retrieve the post to be deleted
